@@ -15,3 +15,5 @@ ImageManager::~ImageManager()
 {
 	stbi_image_free(img);
 }
+
+int ImageManager::importPixel()
