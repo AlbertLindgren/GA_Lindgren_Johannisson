@@ -30,6 +30,18 @@ int getPixel(unsigned char* img, int width, int channels, size_t x, size_t, size
 		<< static_cast<int>(img[index + 3]) << "\n";
 }
 
+int importPixel(int coordinate)
+{
+
+	// return color (color är [r,b,g])
+}
+
+void exportPixel(int colors[])
+{
+
+}
+
+
 int main()
 {
 	int width, height,
