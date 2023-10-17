@@ -30,8 +30,8 @@ public:
 	void exportPixel(int nPixel, std::vector<int> colour);
 
 	// Get functions
-	//int getWidth();
-	//int getHeight();
+	int getWidth();
+	int getHeight();
 	//int getChannels();
 
 private:

@@ -1,2 +1,3 @@
 require 'mkmf-rice'
-create_makefile('image_encryptor')
+
+create_makefile('rice_wrap')

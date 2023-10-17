@@ -38,3 +38,13 @@ void ImageManager::exportPixel(int nPixel, std::vector<int> colour)
 	c_pixels[index + 1] = colour[1];
 	c_pixels[index + 2] = colour[2];
 }
+
+int ImageManager::getWidth()
+{
+	return _width;
+}
+
+int ImageManager::getHeight()
+{
+	return _height;
+}

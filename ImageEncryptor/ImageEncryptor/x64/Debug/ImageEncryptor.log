@@ -1,2 +1,5 @@
 ﻿  main.cpp
-  ImageEncryptor.vcxproj -> C:\work\Gymnasiearbete\GA_Lindgren_Johannisson\ImageEncryptor\x64\Debug\ImageEncryptor.exe
+C:\work\Gymnasiearbete\GA_Lindgren_Johannisson\ImageEncryptor\ImageEncryptor\main.cpp(50,18): error C2065: 'image': undeclared identifier
+  rice_wrap.cpp
+C:\work\Gymnasiearbete\GA_Lindgren_Johannisson\libraries\rice-master\rice\detail\ruby.hpp(11,10): fatal error C1083: Cannot open include file: 'ruby.h': No such file or directory
+  Generating Code...
