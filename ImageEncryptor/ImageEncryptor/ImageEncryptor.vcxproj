@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="image_manager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="rice_wrap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="image_manager.h" />

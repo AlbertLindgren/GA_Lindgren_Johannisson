@@ -1,0 +1,38 @@
+Gemfile.lock
+*.bundle
+README.doxygen
+doc/_build
+
+pkg
+*.log
+.*.swp
+
+# Build artifacts
+out
+test/**/Makefile
+sample/**/Makefile
+*.o
+*.so
+*.bundle
+*.in
+test/**/Makefile
+sample/**/Makefile
+README.doxygen
+doc/_build
+
+# Msys / mingw generated files
+mkinstalldirs
+*.def
+*.exe
+*.exp
+*.ilk
+*.lib
+*.o
+*.obj
+*.pdb
+*.so
+
+# Various IDE folders
+.idea
+msvc
+.vscode
