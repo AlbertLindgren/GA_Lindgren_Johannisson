@@ -12,6 +12,7 @@ ImageManager::~ImageManager()
 
 unsigned char* ImageManager::loadImage(const char* path)
 {
+	_path = path;
 	_img = stbi_load(path, &_width, &_height, &_channels, _channel_num);
 	return _img;
 }
@@ -37,6 +38,9 @@ void ImageManager::exportPixel(int nPixel, std::vector<int> colour)
 	c_pixels[index] = colour[0];
 	c_pixels[index + 1] = colour[1];
 	c_pixels[index + 2] = colour[2];
+
+	stbi_write_png(_path, _width, _height, _channel_num, c_pixels, _width * _channel_num);
+	delete[] c_pixels;
 }
 
 int ImageManager::getWidth()

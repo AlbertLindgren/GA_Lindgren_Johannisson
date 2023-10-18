@@ -1,13 +1,14 @@
 #ifndef IMAGE_MANAGER
 #define IMAGE_MANAGER
 
-#include <vector>
 #include <iostream>
+#include <vector>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-#include "stb_image_write.h"
 
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
 
 /* Class containing functions for loading image, storing important information in variables which can be accessed with get methods
 * and functions for getting and changing pixels.
@@ -41,6 +42,7 @@ private:
 	int _channels;
 	std::vector<int> _rgb_pixel;
 	const int _channel_num = 3;
+	const char* _path;
 };
 
 #endif // IMAGE_MANAGER
