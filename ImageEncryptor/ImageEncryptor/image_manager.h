@@ -31,6 +31,8 @@ public:
 	int getHeight();
 	//int getChannels();
 
+
+
 private:
 	unsigned char* _img;
 	int _width;

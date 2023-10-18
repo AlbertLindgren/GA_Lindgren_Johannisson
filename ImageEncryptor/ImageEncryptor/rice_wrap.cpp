@@ -15,4 +15,6 @@ void Init_rice_wrap()
 		.define_method("exportPixel", &ImageManager::exportPixel)
 		.define_method("getWidth", &ImageManager::getWidth)
 		.define_method("getHeight", &ImageManager::getHeight);
+		
+	define_vector<std::vector<int>>("IntVector");
 }

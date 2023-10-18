@@ -28,6 +28,7 @@ std::vector<int> ImageManager::importPixel(int nPixel)
 	_rgb_pixel[0] = static_cast<int>(_img[index + 0]);
 	_rgb_pixel[1] = static_cast<int>(_img[index + 1]);
 	_rgb_pixel[2] = static_cast<int>(_img[index + 2]);
+
 	return _rgb_pixel;
 }
 
