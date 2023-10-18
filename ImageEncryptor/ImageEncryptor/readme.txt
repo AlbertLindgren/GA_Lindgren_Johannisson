@@ -1,0 +1,1 @@
+write "ridk enable" in the terminal to use create makefile and use "make". 

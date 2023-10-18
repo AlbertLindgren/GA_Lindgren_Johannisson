@@ -1,5 +1,11 @@
 #include "image_manager.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
+
 ImageManager::ImageManager()
 {
 	_rgb_pixel = { 0, 0, 0 };
@@ -10,11 +16,10 @@ ImageManager::~ImageManager()
 	stbi_image_free(_img);
 }
 
-unsigned char* ImageManager::loadImage(const char* path)
+void ImageManager::loadImage(const char* path)
 {
 	_path = path;
 	_img = stbi_load(path, &_width, &_height, &_channels, _channel_num);
-	return _img;
 }
 
 std::vector<int> ImageManager::importPixel(int nPixel)
@@ -51,4 +56,8 @@ int ImageManager::getWidth()
 int ImageManager::getHeight()
 {
 	return _height;
+}
+
+int main() {
+	return 0;
 }
