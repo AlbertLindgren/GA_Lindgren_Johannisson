@@ -1,3 +1,4 @@
+require_relative 'dekryptering'
 char_list = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",".",","," ","?","!", nil]
 
 def binary_find(a)
@@ -75,8 +76,12 @@ while run < message.length
         change[number] = color
         number += 1
     end
+
     p og_col
     p change
+    change = change + [1,1,1,1,1]
+    p change
+    puts dekrypt(change, "")
     run += 1
 end
 
