@@ -24,19 +24,18 @@ void ImageManager::loadImage(const char* path)
 
 std::vector<int> ImageManager::importPixel(int nPixel) // The fault
 {
+	_img = stbi_load(_path, &_width, &_height, &_channels, _channel_num);
 	int index = 3 * nPixel;
-	std::vector<int> tempPixel;
-	tempPixel = {0,0,0};
-	tempPixel[0] = static_cast<int>(_img[index + 0]);
-	tempPixel[1] = static_cast<int>(_img[index + 1]);
-	tempPixel[2] = static_cast<int>(_img[index + 2]);
+	_rgb_pixel[0] = static_cast<int>(_img[index + 0]);
+	_rgb_pixel[1] = static_cast<int>(_img[index + 1]);
+	_rgb_pixel[2] = static_cast<int>(_img[index + 2]);
 
-	return tempPixel;
+	return _rgb_pixel;
 }
 
 void ImageManager::exportPixel(int nPixel, std::vector<int> colour)
 {
-
+	_img = stbi_load(_path, &_width, &_height, &_channels, _channel_num);
 	uint8_t* c_pixels = new uint8_t[_width * _height * _channel_num];
 	int index = 3 * nPixel;
 	for (int i = 0; i < (_width * _height * _channel_num); i++) {
