@@ -52,11 +52,12 @@ message = gets.chomp
 puts "Enter filepath: "
 path = gets.chomp
 length = 5
-number = 0
+run = 0
 run = 0
 digit_mem = []
 store = 0
 char_val = []
+orig_col = []
 
 # Load image
 image = ImageManager.new
@@ -72,30 +73,39 @@ while run < message.length
     og_col = []
     change = []
     binary_mem = binary_find(store)
-    while number < length #number är bara vilken bit man är på
-        #og_col[0] = image.importPixel(run)[0]
-		#og_col[1] = image.importPixel(run)[1]
-		#og_col[2] = image.importPixel(run)[2]    #Detta ska vara funktionen som tar in färg värdet
-        og_col[number] = color
-        color_2 = color%2
-        color_code = binary_mem[number]
-
-        color = color - color_2 + color_code #Detta är inte så den ska funka, jag ska istället göra flera steg där jag tar flera värden men det kommer vara typ så här.
-        if color > 255
-            color -= 2
-        end
-        #Här ska det vara en funktion som tar "color" som en integer och ändrar pixeln till den färgen
-        change[number] = color
-		#image.exportPixel(run, change)
-        number += 1
+    og_col[0] = image.importPixel(run)[0]
+	og_col[1] = image.importPixel(run)[1]
+	og_col[2] = image.importPixel(run)[2]    #Detta ska vara funktionen som tar in färg värdet
+    color = og_col[0]
+    orig_col = image.importPixel(run)[0]
+	og_col[1] = image.importPixel(run)[1]
+	og_col[2] = image.importPixel(run)[2] 
+    color_2 = color%2
+    color_code = binary_mem[run%5]
+    color = color - color_2 + color_code #Detta är inte så den ska funka, jag ska istället göra flera steg där jag tar flera värden men det kommer vara typ så här.
+    if color > 255
+        color -= 2
     end
-
-    p og_col
-    p change
-    change = change + [1,1,1,1,1]
-    p change
-    puts dekrypt(change, "")
+    col_return = [color, og_col[1], og_col[2]]
+    #Här ska det vara en funktion som tar "color" som en integer och ändrar pixeln till den färgen
+	image.exportPixel(run, col_return)
     run += 1
+
 end
 
+for x in 1..5
+    og_col[0] = image.importPixel(run+x)[0]
+	og_col[1] = image.importPixel(run+x)[1]
+	og_col[2] = image.importPixel(run+x)[2] 
+    col_return = [og_col[0], og_col[1], og_col[2]]
+    image.exportPixel(run+x, col_return)
+end
+#puts dekrypt(change, "")
 
+for x in 0..6
+    og_col[0] = image.importPixel(x)[0]
+	og_col[1] = image.importPixel(x)[1]
+	og_col[2] = image.importPixel(x)[2] 
+    p og_col[0]
+    p orig_col[x]
+end
