@@ -69,6 +69,7 @@ while run < message.length
             break
         end
     end
+    check = []
     og_col = []
     change = []
     binary_mem = binary_find(store)
@@ -85,8 +86,6 @@ while run < message.length
         end
         col_return = [color, og_col[1], og_col[2]]
         #Här ska det vara en funktion som tar "color" som en integer och ändrar pixeln till den färgen
-        p col_return
-        p orig_col[pix]
 	    image.exportPixel(pix, col_return)
         pix += 1
     end
@@ -104,8 +103,8 @@ end
 #puts dekrypt(change, "")
 
 for x in 0..2
-    og_col[0] = image.importPixel(x)[0]
+    og_col = image.importPixel(x)[0]
 
-    p og_col[0]
+    p og_col
     p orig_col[x]
 end
