@@ -22,8 +22,13 @@ void ImageManager::loadImage(const char* path)
 	_img = stbi_load(path, &_width, &_height, &_channels, _channel_num);
 }
 
-std::vector<int> ImageManager::importPixel(int nPixel) // The fault
+std::vector<int> ImageManager::importPixel(int nPixel)
 {
+	if (nPixel > (_width * _height))
+	{
+		std::cout << "ERROR: index exceeded pixel total: " << strerror(errno) << std::endl;
+		exit(0);
+	}
 	_img = stbi_load(_path, &_width, &_height, &_channels, _channel_num);
 	int index = 3 * nPixel;
 	_rgb_pixel[0] = static_cast<int>(_img[index + 0]);
@@ -35,6 +40,11 @@ std::vector<int> ImageManager::importPixel(int nPixel) // The fault
 
 void ImageManager::exportPixel(int nPixel, std::vector<int> colour)
 {
+	if (nPixel > (_width * _height))
+	{
+		std::cout << "ERROR: index exceeded pixel total: " << strerror(errno) << std::endl;
+		exit(0);
+	}
 	_img = stbi_load(_path, &_width, &_height, &_channels, _channel_num);
 	uint8_t* c_pixels = new uint8_t[_width * _height * _channel_num];
 	int index = 3 * nPixel;
