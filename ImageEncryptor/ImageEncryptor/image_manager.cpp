@@ -26,7 +26,7 @@ std::vector<int> ImageManager::importPixel(int nPixel)
 {
 	if (nPixel > (_width * _height))
 	{
-		std::cout << "ERROR: index exceeded pixel total: " << strerror(errno) << std::endl;
+		std::cout << "CPP_ERROR: index exceeded pixel total: " << std::endl;
 		exit(0);
 	}
 	_img = stbi_load(_path, &_width, &_height, &_channels, _channel_num);
@@ -42,7 +42,7 @@ void ImageManager::exportPixel(int nPixel, std::vector<int> colour)
 {
 	if (nPixel > (_width * _height))
 	{
-		std::cout << "ERROR: index exceeded pixel total: " << strerror(errno) << std::endl;
+		std::cout << "CPP_ERROR: index exceeded pixel total: " << std::endl;
 		exit(0);
 	}
 	_img = stbi_load(_path, &_width, &_height, &_channels, _channel_num);
