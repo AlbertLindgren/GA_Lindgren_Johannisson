@@ -62,6 +62,7 @@ image = ImageManager.new
 image.loadImage(path)
 
 while run < message.length
+	# Find the character from the index and store it in "store"
     for x in 0..31
         if char_list[x] == message[run]
             store = x

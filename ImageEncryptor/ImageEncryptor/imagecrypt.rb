@@ -79,6 +79,7 @@ module Imagecrypt
                     image.loadImage(path)
 
                     while run < message.length
+						# Find the character from the index and store it in "store"
                         for x in 0..31
                             if char_list[x] == message[run]
                                 store = x
@@ -87,9 +88,10 @@ module Imagecrypt
                         end
                         check = []
                         change = []
+						
                         binary_mem = binary_find(store)
                         for bite in 0..4
-                            color = image.importPixel(pix)[0]  
+                            color = image.importPixel(pix)[0]
                             color_2 = color%2
                             color_code = binary_mem[pix%5]
                             color = color - color_2 + color_code

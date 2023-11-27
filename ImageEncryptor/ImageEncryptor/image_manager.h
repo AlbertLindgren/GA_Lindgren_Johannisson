@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 
 
@@ -35,6 +36,7 @@ public:
 
 private:
 	unsigned char* _img;
+	std::string imageType;
 	int _width;
 	int _height;
 	int _channels;

@@ -20,6 +20,28 @@ void ImageManager::loadImage(const char* path)
 {
 	_path = path;
 	_img = stbi_load(path, &_width, &_height, &_channels, _channel_num);
+
+	// Get image type, GIF(.gif), PNG(.png), BMP(.bmp) or JPEG(.jpg,.jpeg,.jpe,.jfif)
+	std::string image_path = path;
+	std::string sub_str;
+	size_t pos = image_path.find('.');
+	if (pos != std::string::npos) {
+		sub_str = image_path.substr(pos);
+	}
+	
+	if (sub_str == ".png") {
+		imageType = "png";
+	}
+	else if (sub_str == ".jpg" || sub_str == ".jpeg" || sub_str == ".jpe" || sub_str == ".jfif") {
+		imageType = "jpg";
+	}
+	else if (sub_str == ".bmp") {
+		imageType = "bmp";
+	}
+	else {
+		std::cout << "ERROR! Unsupported image format.\n";
+		exit(0);
+	}
 }
 
 std::vector<int> ImageManager::importPixel(int nPixel)
@@ -56,7 +78,17 @@ void ImageManager::exportPixel(int nPixel, std::vector<int> colour)
 	c_pixels[index + 1] = colour[1];
 	c_pixels[index + 2] = colour[2];
 
-	stbi_write_png(_path, _width, _height, _channel_num, c_pixels, _width * _channel_num);
+	// Write based on format
+	if (imageType == "png") {
+		stbi_write_png(_path, _width, _height, _channel_num, c_pixels, _width * _channel_num);
+	}
+	else if (imageType == "jpg") {
+		stbi_write_jpg(_path, _width, _height, _channel_num, c_pixels, 100);
+	}
+	else if (imageType == "bmp") {
+		stbi_write_bmp(_path, _width, _height, _channel_num, c_pixels);
+	}
+
 	delete[] c_pixels;
 }
 
