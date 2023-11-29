@@ -7,7 +7,7 @@ module Imagecrypt
 			
 			
 			class Encrypt < Dry::CLI::Command
-				desc "Encrypt message in png-image"
+				desc "Encrypt message in image"
 				
                 argument :message_arg, required: true, desc: "Message to encrypt"
 				argument :path_arg, required: true, desc: "Image path"
@@ -114,7 +114,7 @@ module Imagecrypt
 			end
 			
 			class Decrypt < Dry::CLI::Command
-				desc "Decrypt message in png-image"
+				desc "Decrypt message in image"
 				
 				argument :path_arg, required: true, desc: "Image path"
 
