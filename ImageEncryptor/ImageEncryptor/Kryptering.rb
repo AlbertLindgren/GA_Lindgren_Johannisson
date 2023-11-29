@@ -51,6 +51,7 @@ puts "Enter message: "
 message = gets.chomp
 puts "Enter filepath: "
 path = gets.chomp
+tid = Time.now
 run = 0
 digit_mem = []
 store = 0
@@ -95,5 +96,10 @@ end
 #puts binary_return(storys)
 #numb = binary_return(storys)
 #puts char_list[numb]
+p Time.now - tid
+tid = Time.now
 puts "path"
-puts dekrypt(gets.chomp)
+path = gets.chomp
+tid = Time.now
+puts dekrypt(path)
+p Time.now - tid
