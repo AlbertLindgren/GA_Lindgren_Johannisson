@@ -1,5 +1,6 @@
 require "dry/cli"
 
+
 module Imagecrypt
 	module CLI
 		module Commands
@@ -16,48 +17,20 @@ module Imagecrypt
                     # Execute here
                     #require_relative 'dekryptering'
                     require_relative 'rice_wrap'
-                    char_list = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",".",","," ","?","!", nil]
+                    char_list = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","."," ","1","2","3","4","5","6","7","8","9","0", nil]
                     
                     def binary_find(a)
                         digit_mem = []
-                        if a-16>=0
-                            digit_mem[0] = 1
-                            a-=16
-                        else
-                            digit_mem[0] = 0
-                        end
-                    
-                        if a-8>=0
-                            digit_mem[1] = 1
-                            a-=8
-                        else
-                            digit_mem[1] = 0
-                        end
-                        
-                        if a-4>=0
-                            digit_mem[2] = 1
-                            a-=4
-                        else
-                            digit_mem[2] = 0
-                        end
-                        
-                        if a-2>=0
-                            digit_mem[3] = 1
-                            a-=2
-                        else
-                            digit_mem[3] = 0
-                        end
-                        
-                        if a-1>=0
-                            digit_mem[4] = 1
-                        else
-                            digit_mem[4] = 0
-                        end
+                        digit_mem[0] = (a/16).floor
+                        a -= digit_mem[0]*16
+                        digit_mem[1] = (a/4).floor
+                        a -= digit_mem[1]*4
+                        digit_mem[2] = a
                         return digit_mem
                     end
 
                     def binary_return(a)
-                        return a[0]*16+a[1]*8+a[2]*4+a[3]*2+a[4]
+                        return a[0]*16+a[1]*4+a[2]
                     end
 
                     if message_arg.nil?
@@ -77,26 +50,24 @@ module Imagecrypt
                     # Load image
                     image = ImageManager.new
                     image.loadImage(path)
-
+                    tid = Time.now
                     while run < message.length
 						# Find the character from the index and store it in "store"
-                        for x in 0..31
+                        for x in 0..63
                             if char_list[x] == message[run]
                                 store = x
                                 break
                             end
                         end
-                        check = []
-                        change = []
 						
                         binary_mem = binary_find(store)
-                        for bite in 0..4
+                        for bite in 0..2
                             color = image.importPixel(pix)[0]
-                            color_2 = color%2
-                            color_code = binary_mem[pix%5]
-                            color = color - color_2 + color_code
+                            color_4 = color%4
+                            color_code = binary_mem[pix%3]
+                            color = color - color_4 + color_code
                             if color > 255
-                                color -= 2
+                                color -= 4
                             end
                             col_return = [color, image.importPixel(pix)[1], image.importPixel(pix)[2]]
                             image.exportPixel(pix, col_return)
@@ -104,12 +75,16 @@ module Imagecrypt
                         end
                         run += 1
                     end
-                    for x in 0..4
-                        color = image.importPixel(run+x)[0]
-                        color = color - ( 1 - color%2)
+                    for x in 0..2
+                        color = image.importPixel(pix+x)[0]
+                        color = color - ( 3 - color%4)
                         col_return = [color, image.importPixel(run+x)[1], image.importPixel(run+x)[2]]
                         image.exportPixel(pix+x, col_return)
                     end
+                    puts "tiden det tog sen per tecken"
+                    p "meddelandes längd #{message.length}"
+                    p [Time.now-tid, (Time.now-tid)/message.length]
+
                 end
 			end
 			
@@ -131,16 +106,16 @@ module Imagecrypt
                     runs = 0
                     colors = []
                     char_val = []
-                    char_list = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",".",","," ","?","!", nil]
+                    char_list = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","."," ","1","2","3","4","5","6","7","8","9","0", nil]
                     while true
-                        for n in 0..4
-                            colors[n] = image.importPixel(n + 5*runs)[0]
+                        for n in 0..2
+                            colors[n] = image.importPixel(n + 3*runs)[0]
                         end
-                        for x in 0..4
-                            char_val[x] = colors[x]%2
+                        for x in 0..2
+                            char_val[x] = colors[x]%4
                         end
-                        character = char_val[4]*1 + char_val[3]*2 + char_val[2]*4 + char_val[1]*8 + char_val[0]*16 
-                        if character == 31
+                        character = char_val[0]*16+char_val[1]*4+char_val[2] 
+                        if character == 63
                             puts message
                             return message
                         end
