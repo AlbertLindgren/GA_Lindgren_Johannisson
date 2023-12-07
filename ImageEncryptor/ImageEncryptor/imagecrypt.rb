@@ -17,7 +17,7 @@ module Imagecrypt
                     # Execute here
                     #require_relative 'dekryptering'
                     require_relative 'rice_wrap'
-                    char_list = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","."," ","1","2","3","4","5","6","7","8","9","0", nil]
+                    char_list = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","R","S","T","U","V","W","X","Y","Z","."," ","1","2","3","4","5","6","7","8","9","0", nil]
                     
                     def binary_find(a)
                         digit_mem = []
@@ -106,7 +106,7 @@ module Imagecrypt
                     runs = 0
                     colors = []
                     char_val = []
-                    char_list = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","."," ","1","2","3","4","5","6","7","8","9","0", nil]
+                    char_list = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","R","S","T","U","V","W","X","Y","Z","."," ","1","2","3","4","5","6","7","8","9","0", nil]
                     while true
                         for n in 0..2
                             colors[n] = image.importPixel(n + 3*runs)[0]
