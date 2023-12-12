@@ -9,11 +9,7 @@
 
 /* Class containing functions for loading image, storing important information in variables which can be accessed with get methods
 * and functions for getting and changing pixels.
-Idea: Create object that holds and tracks the current values of the relevant variables. 
 Ruby program sends image path -> c++ function takes it in
-Idea for prototype:
-Take in image path for every function call and track pixels with integer from ruby loop. 
-Return pixel by using std::array. 
 */
 
 class ImageManager
