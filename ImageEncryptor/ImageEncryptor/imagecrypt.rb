@@ -17,7 +17,6 @@ module Imagecrypt
                     require_relative 'rice_wrap'
                     char_list = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","R","S","T","U","V","W","X","Y","Z","."," ","1","2","3","4","5","6","7","8","9","0", nil]
                     
-					# Converts integer to a 3-size hexadecimal array
                     def binary_find(a)
                         digit_mem = []
                         digit_mem[0] = (a/16).floor
