@@ -21,7 +21,7 @@ void ImageManager::loadImage(const char* path)
 	_path = path;
 	_img = stbi_load(path, &_width, &_height, &_channels, _channel_num);
 
-	// Get image type, GIF(.gif), PNG(.png), BMP(.bmp) or JPEG(.jpg,.jpeg,.jpe,.jfif)
+	// Get image type, GIF(.gif), PNG(.png), BMP(.bmp)
 	std::string image_path = path;
 	std::string sub_str;
 	size_t pos = image_path.find('.');
@@ -31,9 +31,6 @@ void ImageManager::loadImage(const char* path)
 	
 	if (sub_str == ".png") {
 		imageType = "png";
-	}
-	else if (sub_str == ".jpg" || sub_str == ".jpeg" || sub_str == ".jpe" || sub_str == ".jfif") {
-		imageType = "jpg";
 	}
 	else if (sub_str == ".bmp") {
 		imageType = "bmp";
@@ -81,9 +78,6 @@ void ImageManager::exportPixel(int nPixel, std::vector<int> colour)
 	// Write based on format
 	if (imageType == "png") {
 		stbi_write_png(_path, _width, _height, _channel_num, c_pixels, _width * _channel_num);
-	}
-	else if (imageType == "jpg") {
-		stbi_write_jpg(_path, _width, _height, _channel_num, c_pixels, 100);
 	}
 	else if (imageType == "bmp") {
 		stbi_write_bmp(_path, _width, _height, _channel_num, c_pixels);

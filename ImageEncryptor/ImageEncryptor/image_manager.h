@@ -26,10 +26,6 @@ public:
 	// Get functions
 	int getWidth();
 	int getHeight();
-	//int getChannels();
-
-
-
 private:
 	unsigned char* _img;
 	std::string imageType;
